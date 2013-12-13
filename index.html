@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html data-ng-app="DocApp">
+ <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
+ 	<link rel="stylesheet" type="text/css" href="topcoat/css/topcoat-mobile-dark.css">
+    <script src="jslib/angular.js"></script>
+    <script src="jslib/angular-route.js"></script>
+ 	<link rel="stylesheet" type="text/css" href="mycss.css">
+
+ 	<title>Doctor Visit</title>
+ </head>
+ <body>
+ 	<div id="header" class="topcoat-navigation-bar">
+ 		<div class="topcoat-navigation-bar__item center full">
+ 			<table width="100%">
+ 				<tr>
+ 					<td width="90%"><h1 class="topcoat-navigation-bar__title">Doctor Visit</h1></td>
+ 					<td><a href="#"><img src="home.png" width="45" height="45"></a></td>
+ 				</tr>
+ 			</table>		
+ 		</div>
+ 	</div>
+
+ 	<div id="body">
+ 		<div data-ng-view=""></div>
+ 	</div>
+
+<!-- 	<div id="footer" class="topcoat-navigation-bar">
+ 		<div class="topcoat-navigation-bar__item right full">
+ 			Copyright © Progen ERP Systems Pvt. Ltd.
+ 		</div>
+ 	</div> -->
+
+ 	<div id="footer">
+		Copyright © Progen ERP Systems Pvt. Ltd.
+ 	</div>
+
+ 	<script src="jslib/docvisit.js"></script>
+<!-- 	<script src="jslib/myjs.js"></script>-->
+	<script src="jslib/ui-bootstrap-tpls-0.6.0.js"></script>
+ </body>
+</html>

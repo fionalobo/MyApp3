@@ -1,0 +1,273 @@
+<div>
+	<div>
+		<form name="myForm" data-ng-controller="DocVisAddCtrl" novalidate>
+			<br/>
+			<table border="1">
+				<tr>
+					<th colspan="3">DOCVISHD</th>
+				</tr>
+				<tr>
+					<th>Field</th>
+					<th>Status</th>
+					<th>Model Value</th>
+				</tr>
+				<tr>
+					<td>
+						<label for="Town">Town</label><br>
+						<div class="errmsg" data-ng-bind="state_docvishd.Town.message"></div>
+						<div class="container-fluid" data-ng-controller="TypeaheadCtrl">
+							<input  class="topcoat-text-input" style="text-transform:uppercase" data-ng-model="docvishd.Town" name="Town" maxlength="20" placeholder="Enter Town" typeahead="mytown.Town for mytown in townmst | filter:{Town:$viewValue}:startsWith | limitTo:5" data-ng-blur="onBlur('Town')" required>
+						</div>
+					</td>
+					<td>
+						<span class="status-{{myForm.Town.$pristine}}">myForm.Town.$pristine<br/></span>
+						<span class="status-{{myForm.Town.$dirty}}">myForm.Town.$dirty<br/></span>
+						<span class="status-{{myForm.Town.$valid}}">myForm.Town.$valid<br/></span>
+						<span class="status-{{myForm.Town.$invalid}}">myForm.Town.$invalid<br/></span>
+					</td>
+					<td>
+						<div>{{docvishd.Town}}</div>
+						<div>{{myForm.Town.$error}}</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="DoctCd">Doctor</label><br>
+						<div class="errmsg" data-ng-bind="state_docvishd.DoctCd.message"></div>
+						<div class="container-fluid" data-ng-controller="TypeaheadCtrl">
+<!--							<input  class="topcoat-text-input" style="text-transform:uppercase" data-ng-model="docvishd.DoctCd" name="DoctCd" maxlength="20" placeholder="Enter Doctor" typeahead="mydoc.DoctCd as mydoc.DoctCd for mydoc in doctmst | filter:{DoctCd:$viewValue,Town:docvishd.Town} | limitTo:5" data-ng-blur="onBlur('DoctCd')" required>-->
+							<input  class="topcoat-text-input" style="text-transform:uppercase" data-ng-model="docvishd.DoctCd" name="DoctCd" maxlength="20" placeholder="Enter Doctor" typeahead="mydoc.DoctCd as mydoc.DoctCd for mydoc in doctmst | filter:{DoctCd:$viewValue}:startsWith | filter:{Town:docvishd.Town} | limitTo:5" data-ng-blur="onBlur('DoctCd')" required>						</div>
+					</td>
+					<td>
+						<span class="status-{{myForm.DoctCd.$pristine}}">myForm.DoctCd.$pristine<br/></span>
+						<span class="status-{{myForm.DoctCd.$dirty}}">myForm.DoctCd.$dirty<br/></span>
+						<span class="status-{{myForm.DoctCd.$valid}}">myForm.DoctCd.$valid<br/></span>
+						<span class="status-{{myForm.DoctCd.$invalid}}">myForm.DoctCd.$invalid<br/></span>
+					</td>
+					<td>
+						<div>{{docvishd.DoctCd}}</div>
+						<div>{{myForm.DoctCd.$error}}</div>
+					</td>
+				</tr>
+			</table>
+
+			<hr/>
+
+			<table border="1">
+				<tr>
+					<th colspan="3">Domain Integrity Rules</th>
+				</tr>
+				<tr>
+					<th>Using Pattern</th>
+					<th>Status</th>
+					<th>Model Value</th>
+				</tr>
+				<tr>
+					<td>
+						<label for="LocCd1">Location (3 characs)</label><br>
+						<div class="errmsg" data-ng-bind="state_pohd.LocCd1.message"></div>
+						<div class="container-fluid" data-ng-controller="TypeaheadCtrl">
+							<input  class="topcoat-text-input" style="text-transform:uppercase" data-ng-model="pohd.LocCd1" name="LocCd1" maxlength="3" data-ng-pattern="/^[A-Za-z0-9]+$/" placeholder="Enter Location Code" typeahead="myloc.LocCd for myloc in a2locmst | filter:{LocCd:$viewValue}:startsWith | limitTo:5" data-ng-blur="onBlur('LocCd1')" tooltip="Enter Location Code" tooltip-trigger="focus" tooltip-placement="right" required />
+						</div>
+					</td>
+					<td>
+						<span class="status-{{myForm.LocCd1.$pristine}}">myForm.LocCd1.$pristine<br/></span>
+						<span class="status-{{myForm.LocCd1.$dirty}}">myForm.LocCd1.$dirty<br/></span>
+						<span class="status-{{myForm.LocCd1.$valid}}">myForm.LocCd1.$valid<br/></span>
+						<span class="status-{{myForm.LocCd1.$invalid}}">myForm.LocCd1.$invalid<br/></span>
+					</td>
+					<td>
+						<div>{{pohd.LocCd1}}</div>
+						<div>{{myForm.LocCd1.$error}}</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="VendorCd">Vendor</label><br>
+						<div class="errmsg" data-ng-bind="state_pohd.VendorCd.message"></div>
+						<div class="container-fluid" data-ng-controller="TypeaheadCtrl">
+							<input  class="topcoat-text-input" style="text-transform:uppercase" data-ng-model="pohd.VendorCd" name="VendorCd" maxlength="10" placeholder="Enter Vendor Code" typeahead="myvend.VendorCd as myvend.VendorCd + '(' + myvend.VendorName + ')' for myvend in vendmst | filter:{VendorCd:$viewValue}:startsWith | filter:{LocCd:pohd.LocCd1} | limitTo:5" typeahead-on-select="OnPickVndCd($item)" tooltip="Enter Vendor Code" tooltip-trigger="focus" tooltip-placement="top" >
+							<input class="topcoat-text-input" style="text-transform:uppercase" data-ng-model="m.VendorName" name="m_VendorName" maxlength="40" placeholder="Enter Vendor Name" typeahead="myvndnm.VendorName as myvndnm.VendorName + '(' + myvndnm.VendorCd + ')' for myvndnm in vendmst| filter:{VendorName:$viewValue}:startsWith | filter:{LocCd:pohd.LocCd1} | limitTo:5" typeahead-on-select="OnPickVndNm($item)" tooltip="{{m.VendorName}}" tooltip-trigger="focus" tooltip-placement="top" />
+						</div>
+<!--						<div class="container-fluid" data-ng-controller="TypeaheadCtrl">
+							<input class="topcoat-text-input" style="text-transform:uppercase" data-ng-model="m.VendorName" name="m_VendorName" maxlength="40" placeholder="Enter Vendor Name" typeahead="myvndnm.VendorName as myvndnm.VendorName + '(' + myvndnm.VendorCd + ')' for myvndnm in vendmst| filter:{VendorName:$viewValue}:startsWith | filter:{LocCd:pohd.LocCd1} | limitTo:5" typeahead-on-select="OnPickVndNm($item)">
+						</div>-->
+					</td>
+					<td>
+						<span class="status-{{myForm.VendorCd.$pristine}}">myForm.VendorCd.$pristine<br/></span>
+						<span class="status-{{myForm.VendorCd.$dirty}}">myForm.VendorCd.$dirty<br/></span>
+						<span class="status-{{myForm.VendorCd.$valid}}">myForm.VendorCd.$valid<br/></span>
+						<span class="status-{{myForm.VendorCd.$invalid}}">myForm.VendorCd.$invalid<br/></span>
+					</td>
+					<td>
+						<div>{{pohd.VendorCd}}</div>
+						<div>{{m.VendorName}}</div>
+						<div>{{myForm.VendorCd.$error}}</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="Val1">Any Value (Upto 5 characs)</label><br>
+						<div class="errmsg" data-ng-bind="state_pohd.Val1.message"></div>
+						<input type="text" class="topcoat-text-input" data-ng-model="pohd.Val1" name="Val1" maxlength="5" data-ng-blur="onBlur('Val1')"><br/>
+					</td>
+					<td>
+						<span class="status-{{myForm.Val1.$pristine}}">myForm.Val1.$pristine<br/></span>
+						<span class="status-{{myForm.Val1.$dirty}}">myForm.Val1.$dirty<br/></span>
+						<span class="status-{{myForm.Val1.$valid}}">myForm.Val1.$valid<br/></span>
+						<span class="status-{{myForm.Val1.$invalid}}">myForm.Val1.$invalid<br/></span>
+					</td>
+					<td>
+						{{pohd.Val1}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="Val2">Only Alpha (Upto 5 characs)</label><br>
+						<div class="errmsg" data-ng-bind="state_pohd.Val2.message"></div>
+						<input type="text" class="topcoat-text-input" data-ng-model="pohd.Val2" name="Val2" maxlength="5" data-ng-pattern="/^[A-Za-z]+$/" data-ng-blur="onBlur('Val2')"><br/>
+					</td>
+					<td>
+						<span class="status-{{myForm.Val2.$pristine}}">myForm.Val2.$pristine<br/></span>
+						<span class="status-{{myForm.Val2.$dirty}}">myForm.Val2.$dirty<br/></span>
+						<span class="status-{{myForm.Val2.$valid}}">myForm.Val2.$valid<br/></span>
+						<span class="status-{{myForm.Val2.$invalid}}">myForm.Val2.$invalid<br/></span>					
+					</td>
+					<td>
+						{{pohd.Val2}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="Val3">Only Digits (Upto 2 characs; between 5 - 15)</label><br>
+						<div class="errmsg" data-ng-bind="state_pohd.Val3.message"></div>
+						<input type="text" class="topcoat-text-input right" data-ng-model="pohd.Val3" name="Val3" maxlength="2" data-ng-pattern="/^[0-9]+$/" data-ng-blur="onBlur('Val3')"><br/>
+					</td>
+					<td>
+						<span class="status-{{myForm.Val3.$pristine}}">myFormVal3.$pristine<br/></span>
+						<span class="status-{{myForm.Val3.$dirty}}">myForm.Val3.$dirty<br/></span>
+						<span class="status-{{myForm.Val3.$valid}}">myForm.Val3.$valid<br/></span>
+						<span class="status-{{myForm.Val3.$invalid}}">myForm.Val3.$invalid<br/></span>					
+					</td>
+					<td>
+						{{pohd.Val3}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="Val4">Numeric (Upto 10 characs, 2 decimals)</label><br>
+						<div class="errmsg" data-ng-bind="state_pohd.Val4.message"></div>
+						<input type="text" class="topcoat-text-input right" data-ng-model="pohd.Val4" name="Val4" maxlength="10" data-ng-pattern="/(^[0-9]{0,7}$)|(^-{1}[0-9]{0,6}$)|(^-{1}[0-9]{0,6}\.[0-9]{0,2}$)|(^[0-9]{0,7}\.[0-9]{0,2}$)/" data-ng-blur="onBlur('Val4')"><br/>
+					</td>
+					<td>
+						<span class="status-{{myForm.Val4.$pristine}}">myForm.Val4.$pristine<br/></span>
+						<span class="status-{{myForm.Val4.$dirty}}">myForm.Val4.$dirty<br/></span>
+						<span class="status-{{myForm.Val4.$valid}}">myForm.Val4.$valid<br/></span>
+						<span class="status-{{myForm.Val4.$invalid}}">myForm.Val4.$invalid<br/></span>					
+					</td>
+					<td>
+						{{pohd.Val4}}
+					</td>
+				</tr>
+<!--				<tr>
+					<td>
+						<label for="Val4">Numeric (Upto 10 characs, 2 decimals)</label><br>
+						<div class="errmsg" data-ng-bind="state_pohd.Val4.message"></div>
+						<input type="text" class="topcoat-text-input right" data-ng-model="pohd.Val4" name="Val4" maxlength="10" pattern="[0-9]*" data-ng-blur="onBlur('Val4')"><br/>
+					</td>
+					<td>
+						<span class="status-{{myForm.Val4.$pristine}}">myForm.Val4.$pristine<br/></span>
+						<span class="status-{{myForm.Val4.$dirty}}">myForm.Val4.$dirty<br/></span>
+						<span class="status-{{myForm.Val4.$valid}}">myForm.Val4.$valid<br/></span>
+						<span class="status-{{myForm.Val4.$invalid}}">myForm.Val4.$invalid<br/></span>					
+					</td>
+					<td>
+						{{pohd.Val4}}
+					</td>
+				</tr>-->
+				<tr>
+					<td>
+						<label for="Val5"> Alphanumeric (Upto 5 characs)</label><br>
+						<div class="errmsg" data-ng-bind="state_pohd.Val5.message"></div>
+						<input type="text" class="topcoat-text-input" data-ng-model="pohd.Val5" name="Val5" maxlength="5" data-ng-pattern="/^[A-z0-9]+$/" data-ng-blur="onBlur('Val5')"><br/>
+					</td>
+					<td>
+						<span class="status-{{myForm.Val5.$pristine}}">myForm.Val5.$pristine<br/></span>
+						<span class="status-{{myForm.Val5.$dirty}}">myForm.Val5.$dirty<br/></span>
+						<span class="status-{{myForm.Val5.$valid}}">myForm.Val5.$valid<br/></span>
+						<span class="status-{{myForm.Val5.$invalid}}">myForm.Val5.$invalid<br/></span>					
+					</td>
+					<td>
+						{{pohd.Val5}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="Val6"> Number input (between 5 and 10)</label><br>
+						<div class="errmsg" data-ng-bind="state_pohd.Val6.message"></div>
+<!--						<input type="number" data-ng-model="pohd.Val6" name="Val6" data-ng-maxlength="2" min="5" max="10" data-ng-pattern="/^[0-9]{1,2}$/"><br/>-->
+						<input type="number" class="topcoat-text-input right" data-ng-model="pohd.Val6" name="Val6" data-ng-maxlength="10" step="0.01" pattern="\d*" data-ng-pattern="/(^[0-9]{0,7}$)|(^-{1}[0-9]{0,6}$)|(^-{1}[0-9]{0,6}[.]{1}[0-9]{0,2}$)|(^[0-9]{0,7}\.{1}[0-9]{0,2}$)/" min="-999999.99" max="9999999.99"><br/>
+<!--					<div data-ng-show="myForm.Val6.$dirty && myForm.Val6.$invalid"> -->
+							<span>{{myForm.Val6.$error}}</span>
+<!--					</div> -->
+					</td>
+					<td>
+						<span class="status-{{myForm.Val6.$pristine}}">myForm.Val6.$pristine<br/></span>
+						<span class="status-{{myForm.Val6.$dirty}}">myForm.Val6.$dirty<br/></span>
+						<span class="status-{{myForm.Val6.$valid}}">myForm.Val6.$valid<br/></span>
+						<span class="status-{{myForm.Val6.$invalid}}">myForm.Val6.$invalid<br/></span>					
+					</td>
+					<td>
+						{{pohd.Val6}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="Val7"> Checkbox</label><br>
+						<div class="errmsg" data-ng-bind="state_pohd.Val7.message"></div>
+						<label class="topcoat-checkbox">
+  							<input type="checkbox" data-ng-model="pohd.Val7" name="Val7">
+  							<div class="topcoat-checkbox__checkmark"></div>
+  							Is Selected?
+						</label>
+						
+					</td>
+					<td>
+						<span class="status-{{myForm.Val7.$pristine}}">myForm.Val7.$pristine<br/></span>
+						<span class="status-{{myForm.Val7.$dirty}}">myForm.Val7.$dirty<br/></span>
+						<span class="status-{{myForm.Val7.$valid}}">myForm.Val7.$valid<br/></span>
+						<span class="status-{{myForm.Val7.$invalid}}">myForm.Val7.$invalid<br/></span>					
+					</td>
+					<td>
+						{{pohd.Val7}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="Val8">Text Area</label><br/><br/>
+						<div class="errmsg" data-ng-bind="state_pohd.Val8.message"></div>
+						<textarea class="topcoat-textarea" data-ng-model="pohd.Val8" name="Val8" rows="5" cols="20" placeholder="Payment Terms" required></textarea>
+					</td>
+					<td>
+						<span class="status-{{myForm.Val8.$pristine}}">myForm.Val8.$pristine<br/></span>
+						<span class="status-{{myForm.Val8.$dirty}}">myForm.Val8.$dirty<br/></span>
+						<span class="status-{{myForm.Val8.$valid}}">myForm.Val8.$valid<br/></span>
+						<span class="status-{{myForm.Val8.$invalid}}">myForm.Val8.$invalid<br/></span>					
+					</td>
+					<td>{{pohd.Val8}}</td>
+					<td><pre>{{pohd.Val8}}</pre></td>
+					<td>
+						<textarea class="topcoat-textarea" data-ng-bind="pohd.Val8" rows="5" cols="20" disabled></textarea><br/>
+						<span>{{myForm.Val8.$error}}</span>
+					</td>
+				</tr>
+			</table>
+
+			<hr/>
+
+		<button class="topcoat-button">Save</button>
+		<button class="topcoat-button">Cancel</button><br>
+		<a href="DocVisit.html">Home</a>
+		</form>
+	</div>
+</div>

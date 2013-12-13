@@ -1,0 +1,32 @@
+<div>
+ 	<div>
+ 		<h3 style="color:#c6c8c8">Date : </h3>
+ 		<!--<input type="date" data-ng-model="WDOCVISHD.VisDate" value="" placeholder="Enter date" class="topcoat-search-input">-->
+ 		<input type="date" data-ng-model="searchVisDate" placeholder="Enter date" >
+<!-- 		<button class="topcoat-icon-button"><span class="topcoat-icon" style="background-color:#A5A7A7;"></span></button> -->
+ 		<button class="topcoat-icon-button"><img class="topcoat-icon" src="refresh.png" width="50%" height="50%"></button>
+ 		<hr />
+ 	</div>
+
+ 	<div>
+ 		<table border="1">
+ 			<tr>
+ 				<th>Srl.</th>
+ 				<th>Time</th>
+ 				<th>Town</th>
+ 				<th>Doctor</th>
+ 			</tr>
+ 			<tr data-ng-repeat="mytable in mytableSet">
+ 				<td>{{ mytable.W_RecSeq}}</td>
+ 				<td>{{ mytable.VisTime }}</td>
+ 				<td>{{ mytable.Town }}</td>
+ 				<td>{{ mytable.DoctCd }}</td>
+ 				<td><a href="#/DocTx1.html" data-ng-click="GetRecord({{ mytable.W_RecSeq }})"><img src="edit.png"></a></td>
+ 				<td><a href="#"><img src="trash.png"></a></td>
+ 			</tr>
+ 		</table>
+ 	</div>
+
+ 	<a href="#/DocTx1">Edit Transaction</a><br />
+ 	<a href="#/DocVisAdd">Add Record</a>
+</div>
